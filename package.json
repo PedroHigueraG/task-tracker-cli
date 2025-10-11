@@ -1,0 +1,19 @@
+{
+  "name": "task-tracker-cli",
+  "version": "1.0.0",
+  "description": "CLI to track diferent tasks like add, delete, update, etc",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "bin": {
+    "tracker": "index.js"
+  },
+  "keywords": [
+    "task",
+    "trakcer"
+  ],
+  "author": "Pedro Higuera",
+  "license": "ISC"
+}
