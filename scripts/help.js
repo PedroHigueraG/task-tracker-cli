@@ -16,6 +16,7 @@ export default function showHelp() {
         list todo             List pending tasks
         list in-progress      List tasks in progress
         help                  Show this help message
+        reset                 Reset all tasks
 
     Examples:
         tracker add "Buy groceries"

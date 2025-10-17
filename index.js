@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 import showHelp from './scripts/help.js';
-const args = process.argv.slice(2);
+import * as crudList from './scripts/crudList.js';
 
+const args = process.argv.slice(2);
 
 function main() {
 
@@ -19,9 +20,8 @@ function main() {
                 console.error('Error: Please provide a task description');
                 process.exit(1);
             }
-            const description = args.slice(1).join(' ');
-            console.log(`Adding task: "${description}"`);
-            // TODO: Implement add task functionality
+            var description = args.slice(1).join(' ');
+            console.log(`Adding task with id: "${crudList.addTask(description)}"`);
             break;
 
         case 'update':
@@ -29,10 +29,9 @@ function main() {
                 console.error('Error: Please provide task ID and new description');
                 process.exit(1);
             }
-            const id = args[1];
-            const newDesc = args.slice(2).join(' ');
-            console.log(`Updating task ${id}: "${newDesc}"`);
-            // TODO: Implement update task functionality
+            var id = args[1];
+            var newDesc = args.slice(2).join(' ');
+            console.log(`Updating task ${id}: "${crudList.updateTask(id, newDesc)}"`);
             break;
 
         case 'delete':
@@ -40,8 +39,8 @@ function main() {
                 console.error('Error: Please provide a task ID');
                 process.exit(1);
             }
-            console.log(`Deleting task ${args[1]}`);
-            // TODO: Implement delete task functionality
+            var id = args[1];
+            console.log(`Deleting task was: "${crudList.deleteTask(id)}"`);
             break;
 
         case 'mark-in-progress':
@@ -49,7 +48,8 @@ function main() {
                 console.error('Error: Please provide a task ID');
                 process.exit(1);
             }
-            console.log(`Marking task ${args[1]} as in progress`);
+
+            console.log(`Marking task ${crudList.updateTaskStatus(args[1], "in-progress")} as in progress`);
             // TODO: Implement mark in progress functionality
             break;
 
@@ -58,14 +58,21 @@ function main() {
                 console.error('Error: Please provide a task ID');
                 process.exit(1);
             }
-            console.log(`Marking task ${args[1]} as done`);
-            // TODO: Implement mark done functionality
+            console.log(`Marking task ${crudList.updateTaskStatus(args[1], "done")} as done`);
             break;
 
         case 'list':
-            const filter = args[1] || 'all';
-            console.log(`Listing tasks: ${filter}`);
-            // TODO: Implement list tasks functionality
+            if (args.length < 2) {
+                console.log(crudList.listAll());
+            }else{
+                console.log(crudList.filteredList(args[1]));
+            }
+            
+            break;
+
+        case 'reset':
+            console.log('Resetting all tasks...');
+            crudList.reset(); 
             break;
 
         default:
