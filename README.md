@@ -1,6 +1,6 @@
 # Task Tracker CLI
 
-Project from [roadmap backend projects](https://github.com/PedroHigueraG/task-tracker-cli)
+Project from [roadmap backend projects](https://roadmap.sh/projects/task-tracker)
 
 A simple command-line interface for tracking tasks. Add, update, delete, and manage tasks with different statuses directly from your terminal.
 
